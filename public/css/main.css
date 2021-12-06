@@ -1,0 +1,844 @@
+@-webkit-keyframes fadeInAndOut {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.border {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 0.1em;
+}
+
+#content {
+  margin-top: 4em;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2, p {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  opacity: 0;
+}
+
+#player-history .tournaments-container, #staff-history .tournaments-container {
+  margin: 0 auto 2.5em auto;
+  display: -ms-grid;
+  display: grid;
+  width: 85%;
+  opacity: 100%;
+}
+
+#player-history .show-stats-btn, #staff-history .show-stats-btn {
+  padding-left: 1em;
+  padding-right: 1em;
+  color: white;
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.9em;
+  background-color: #00060c;
+  border: solid 1px #00060c;
+  border-radius: 3px;
+  opacity: 0%;
+}
+
+#player-history .show-stats-btn:hover, #staff-history .show-stats-btn:hover {
+  color: #00060c;
+  background-color: rgba(0, 6, 12, 0.15);
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+#player-history .tournament, #staff-history .tournament {
+  margin: 2.5em auto auto auto;
+  width: 100%;
+  color: white;
+  background-color: #00060c;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: solid #00060c;
+  opacity: 0;
+}
+
+#player-history .tournament a, #staff-history .tournament a {
+  color: white;
+  text-decoration: none;
+}
+
+#player-history .tournament a:hover, #staff-history .tournament a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#player-history .team-size-8, #staff-history .team-size-8 {
+  -ms-grid-columns: 14.285% 14.286% 14.286% 14.286% 14.286% 14.286% 14.285%;
+      grid-template-columns: 14.285% 14.286% 14.286% 14.286% 14.286% 14.286% 14.285%;
+}
+
+#player-history .team-size-7, #staff-history .team-size-7 {
+  -ms-grid-columns: 16.666% 16.667% 16.667% 16.667% 16.667% 16.666%;
+      grid-template-columns: 16.666% 16.667% 16.667% 16.667% 16.667% 16.666%;
+}
+
+#player-history .team-size-6, #staff-history .team-size-6 {
+  -ms-grid-columns: 20% 20% 20% 20% 20%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+#player-history .team-size-5, #staff-history .team-size-5 {
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
+}
+
+#player-history .team-size-4, #player-history .role-count-7, #player-history .role-count-6, #player-history .role-count-5, #player-history .role-count-4, #staff-history .team-size-4, #staff-history .role-count-7, #staff-history .role-count-6, #staff-history .role-count-5, #staff-history .role-count-4 {
+  -ms-grid-columns: 33.333% 33.334% 33.333%;
+      grid-template-columns: 33.333% 33.334% 33.333%;
+}
+
+#player-history .team-size-3, #player-history .role-count-2, #staff-history .team-size-3, #staff-history .role-count-2 {
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+#player-history .team-size-2, #player-history .role-count-1, #staff-history .team-size-2, #staff-history .role-count-1 {
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#loading-screen, #overlay {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+}
+
+#loading-screen {
+  z-index: 15;
+  background-color: #00060c;
+}
+
+#loading-screen #loading-text {
+  color: white;
+  font-size: 4em;
+  -webkit-animation: fadeInAndOut 1.2s infinite;
+          animation: fadeInAndOut 1.2s infinite;
+}
+
+#overlay {
+  display: block;
+  background-color: rgba(0, 6, 12, 0.75);
+  -webkit-animation: fadeIn 0.6s forwards;
+          animation: fadeIn 0.6s forwards;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+#overlay .exit-btn {
+  z-index: 15;
+  display: none;
+  left: auto;
+  right: 0.75em;
+  top: 0.75em;
+  padding: 0.5em 0.75em 0.5em 0.75em;
+  position: fixed;
+  color: white;
+  font-weight: bolder;
+  font-size: 1em;
+  background-color: rgba(0, 6, 12, 0.75);
+  border: none;
+  border-radius: 1em;
+}
+
+#overlay .exit-btn::before {
+  content: 'X';
+}
+
+#overlay h1 {
+  opacity: 0%;
+  -webkit-animation: fadeInUp 1.2s forwards;
+          animation: fadeInUp 1.2s forwards;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+#overlay p {
+  opacity: 0%;
+  -webkit-animation: fadeInUp 1.2s forwards;
+          animation: fadeInUp 1.2s forwards;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#overlay .overlay-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2em auto 2em auto;
+  height: auto;
+  width: 80%;
+  background-color: white;
+  border: solid #00060c;
+  -webkit-animation: fadeInDown 0.6s forwards;
+          animation: fadeInDown 0.6s forwards;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+#overlay .border {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+#overlay .stats, #overlay .placements, #overlay .match-stats, #overlay .roles {
+  display: -ms-grid;
+  display: grid;
+  padding-bottom: 0.8em;
+  opacity: 100%;
+}
+
+#overlay .stats .head, #overlay .placements .head, #overlay .match-stats .head, #overlay .roles .head {
+  font-weight: bold;
+}
+
+#overlay .stats div, #overlay .placements div, #overlay .match-stats div, #overlay .roles div {
+  opacity: 100%;
+}
+
+#overlay #player-stats-container .sub-header, #overlay #player-stats-container .head, #overlay #player-stats-container .element, #overlay #staff-stats-container .sub-header, #overlay #staff-stats-container .head, #overlay #staff-stats-container .element {
+  opacity: 0%;
+}
+
+#overlay #player-stats-container .placements .sub-header, #overlay #player-stats-container .match-stats .sub-header, #overlay #staff-stats-container .placements .sub-header, #overlay #staff-stats-container .match-stats .sub-header {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  padding-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#overlay #player-stats-container .placements .element:last-child, #overlay #player-stats-container .match-stats .element:last-child, #overlay #staff-stats-container .placements .element:last-child, #overlay #staff-stats-container .match-stats .element:last-child {
+  padding-top: 0.5em;
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+}
+
+#overlay #player-stats-container .placements .element:last-child span, #overlay #player-stats-container .match-stats .element:last-child span, #overlay #staff-stats-container .placements .element:last-child span, #overlay #staff-stats-container .match-stats .element:last-child span {
+  font-weight: bold;
+}
+
+#overlay #player-stats-container .placements {
+  -ms-grid-columns: 33.333% 33.334% 33.333%;
+      grid-template-columns: 33.333% 33.334% 33.333%;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#overlay #player-stats-container .placements .sub-header, #overlay #player-stats-container .placements .element:last-child {
+  grid-column-end: 4;
+}
+
+#overlay #player-stats-container .match-stats {
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#overlay #player-stats-container .match-stats .sub-header, #overlay #player-stats-container .match-stats .element:last-child {
+  grid-column-end: 5;
+}
+
+#overlay #player-stats-container .head, #overlay #player-stats-container .element {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+#overlay #staff-stats-container .roles {
+  display: block;
+}
+
+#overlay #staff-stats-container .roles .sub-header {
+  padding-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#overlay #staff-stats-container .roles .row-1, #overlay #staff-stats-container .roles .row-2 {
+  display: -ms-grid;
+  display: grid;
+}
+
+#overlay #staff-stats-container .roles .row-1 {
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
+}
+
+#overlay #staff-stats-container .roles .row-2 {
+  -ms-grid-columns: 33.333% 33.334% 33.333%;
+      grid-template-columns: 33.333% 33.334% 33.333%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#overlay #staff-stats-container .roles .row-2 .element:last-child {
+  padding-top: 0.5em;
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#overlay #staff-stats-container .roles .row-2 .element:last-child span {
+  font-weight: bold;
+}
+
+#overlay #match-history-container .stats {
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+#overlay #match-history-container .match-history {
+  height: 100%;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  margin-top: 1em;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow-y: auto;
+}
+
+#overlay #match-history-container .match-history .match {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
+
+#overlay #match-history-container .match-history .match a {
+  color: black;
+  text-decoration: none;
+}
+
+#overlay #match-history-container .match-history .match a:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#overlay #match-history-container .match-history .match img {
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+#overlay #match-history-container .match-history .match .stage, #overlay #match-history-container .match-history .match .player, #overlay #match-history-container .match-history .match .results, #overlay #match-history-container .match-history .match .mp-lobby {
+  opacity: 0%;
+}
+
+#overlay #match-history-container .match-history .match .stage {
+  padding-bottom: 0.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#overlay #match-history-container .match-history .match .player {
+  padding-bottom: 0.3em;
+}
+
+#overlay #match-history-container .match-history .match .team .team-name, #overlay #match-history-container .match-history .match .team .player-in-team, #overlay #match-history-container .match-history .match .team .separator {
+  opacity: 0%;
+}
+
+#overlay #match-history-container .match-history .match .team .team-name {
+  font-weight: bold;
+  padding-bottom: 0.3em;
+}
+
+#overlay #match-history-container .match-history .match .team .separator {
+  margin-left: 0.75em;
+  margin-right: 0.75em;
+}
+
+#overlay #match-history-container .match-history .match .team .players {
+  padding: auto 1em 0.3em 1em;
+}
+
+#overlay #match-history-container .match-history .match .results {
+  font-weight: bold;
+}
+
+#overlay #match-history-container .match-history .match .match-won {
+  color: green;
+}
+
+#overlay #match-history-container .match-history .match .match-lost {
+  color: red;
+}
+
+#overlay #match-history-container .match-history .match .match-forfeited {
+  color: #323232;
+}
+
+#overlay #match-history-container .match-history .match .mp-lobby {
+  margin-top: 0.3em;
+}
+
+#overlay #match-history-container .match-history .match .mp-lobby a {
+  width: 5em;
+  text-decoration: underline;
+}
+
+#overlay #match-history-container .match-history .match .mp-lobby a:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#overlay #match-history-container .match-history .match:last-child {
+  margin-bottom: 2em;
+}
+
+#overlay #about-section-container {
+  padding-bottom: 1em;
+}
+
+#overlay #about-section-container h1 {
+  opacity: 0%;
+}
+
+#overlay #about-section-container h2, #overlay #about-section-container p, #overlay #about-section-container ul {
+  -webkit-animation: none;
+          animation: none;
+  opacity: 0%;
+}
+
+#overlay #about-section-container p, #overlay #about-section-container ul {
+  padding-left: 4em;
+  padding-right: 4em;
+  text-align: justify;
+}
+
+#overlay #about-section-container a {
+  color: #00060c;
+  text-decoration: underline;
+}
+
+#overlay #about-section-container a:hover {
+  color: rgba(0, 6, 12, 0.7);
+}
+
+#overlay #image-container {
+  height: 85%;
+}
+
+#overlay #image-container #image-container-1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 4% 92% 4%;
+      grid-template-columns: 4% 92% 4%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: hidden;
+}
+
+#overlay #image-container #image-container-1 .element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+#overlay #image-container #image-container-1 img {
+  background-color: #1a202c;
+  border: 4px solid #00060c;
+  opacity: 0%;
+}
+
+#overlay #image-container #image-container-1 .image-btn:first-child button::before {
+  content: '<';
+}
+
+#overlay #image-container #image-container-1 .image-btn:last-child button::before {
+  content: '>';
+}
+
+#overlay #image-container #image-container-1 .image-btn button {
+  width: 100%;
+  height: 40%;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.8em;
+  border: none;
+  background-color: rgba(0, 6, 12, 0.7);
+  border-radius: none;
+  overflow: hidden;
+}
+
+#overlay #image-container #image-container-1 .image-btn button:hover {
+  background-color: rgba(0, 6, 12, 0.9);
+}
+
+#nav-bar, #responsive-nav-bar {
+  z-index: 5;
+  top: 0;
+  display: -ms-grid;
+  display: grid;
+  position: fixed;
+  width: 100%;
+  background-color: #00060c;
+  border-bottom: 0.3em solid white;
+}
+
+#nav-bar button, #responsive-nav-bar button {
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+#nav-bar .option, #responsive-nav-bar .option {
+  height: 2.35em;
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+#nav-bar .selected, #responsive-nav-bar .selected {
+  background-color: white;
+  color: #00060c;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+#nav-bar {
+  -ms-grid-columns: 11em 10em 7em auto;
+      grid-template-columns: 11em 10em 7em auto;
+}
+
+#nav-bar .option:hover {
+  -webkit-box-shadow: inset 0 -3.25em 0 0 rgba(255, 255, 255, 0.25);
+          box-shadow: inset 0 -3.25em 0 0 rgba(255, 255, 255, 0.25);
+}
+
+#nav-bar #show-more {
+  display: none;
+  width: 2.35em;
+}
+
+#nav-bar #show-more button {
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+#nav-bar #show-more button:hover {
+  color: white;
+}
+
+#nav-bar #about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: right;
+      -ms-flex-align: right;
+          align-items: right;
+  -ms-flex-line-pack: right;
+      align-content: right;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+
+#nav-bar #about button {
+  width: 5em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#nav-bar #about button:hover {
+  color: white;
+}
+
+#responsive-nav-bar {
+  display: none;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+}
+
+#responsive-nav-bar .option:hover {
+  -webkit-box-shadow: inset 0 -3.25em 0 0 rgba(255, 255, 255, 0.25);
+          box-shadow: inset 0 -3.25em 0 0 rgba(255, 255, 255, 0.25);
+}
+
+#responsive-nav-bar #about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#responsive-nav-bar #about button {
+  width: 5em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#responsive-nav-bar #about button:hover {
+  color: white;
+}
+
+#player-history .tournament .header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 80% 20%;
+      grid-template-columns: 80% 20%;
+}
+
+#player-history .tournament .header .tournament-name, #player-history .tournament .header .placement {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-weight: bold;
+  opacity: 0%;
+}
+
+#player-history .tournament .header .tournament-name {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  font-size: 2.5em;
+}
+
+#player-history .tournament .header .placement {
+  padding-top: 0.45em;
+  font-size: 2em;
+}
+
+#player-history .tournament .info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 13.5% 11.3% 6.8% 18% 12.8% 15% 22.6%;
+      grid-template-columns: 13.5% 11.3% 6.8% 18% 12.8% 15% 22.6%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#player-history .tournament .info .date, #player-history .tournament .info .rank-range, #player-history .tournament .info .format, #player-history .tournament .info .bracket, #player-history .tournament .info .participant-count, #player-history .tournament .info .seeding {
+  padding-top: 0.35em;
+  padding-bottom: 1em;
+  opacity: 0%;
+}
+
+#player-history .tournament .info .match-history {
+  padding-top: 0.25em;
+  padding-bottom: 1.3em;
+  opacity: 0%;
+}
+
+#player-history .tournament .info button {
+  width: 12em;
+  height: 100%;
+  color: #00060c;
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.9em;
+  background-color: white;
+  border: solid 1px white;
+  border-radius: 3px;
+}
+
+#player-history .tournament .info button:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+#player-history .tournament .border {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#player-history .tournament .team {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% 70%;
+      grid-template-columns: 30% 70%;
+}
+
+#player-history .tournament .team .team-name {
+  padding-top: 0.6em;
+  font-size: 1.5em;
+  font-weight: bold;
+  opacity: 0%;
+}
+
+#player-history .tournament .team .teammates {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 0.2em;
+  margin-bottom: 0.45em;
+}
+
+#player-history .tournament .team .teammates .player {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 45% 55%;
+      grid-template-rows: 45% 55%;
+}
+
+#player-history .tournament .team .teammates .player .country-flag {
+  margin-top: 0.5em;
+}
+
+#player-history .tournament .team .teammates .player .country-flag img {
+  height: 1.5em;
+}
+
+#player-history .tournament .team .teammates .player .username {
+  padding-top: 0.3em;
+  font-size: 0.9em;
+}
+
+#player-history .tournament .team .teammates .player .country-flag, #player-history .tournament .team .teammates .player .username {
+  opacity: 0%;
+}
+
+#staff-history .tournament img {
+  height: 1em;
+}
+
+#staff-history .tournament .header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 78% 22%;
+      grid-template-columns: 78% 22%;
+}
+
+#staff-history .tournament .header .tournament-name, #staff-history .tournament .header .date, #staff-history .tournament .header .host {
+  opacity: 0%;
+}
+
+#staff-history .tournament .header .tournament-name {
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  grid-row-end: 3;
+  padding: 0.25em 1em 0.25em 1em;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+#staff-history .tournament .header .host {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#staff-history .tournament .header .date {
+  padding-top: 0.5em;
+}
+
+#staff-history .tournament .border {
+  height: 0.05em;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#staff-history .tournament .roles {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 0.2em;
+  margin-bottom: 0.45em;
+  font-size: 1.5em;
+}
+
+#staff-history .tournament .roles .role {
+  opacity: 0%;
+}
+
+#staff-history .tournament:last-child {
+  margin-bottom: 2.5em;
+}
+
+#banners #player-banners, #banners #staff-banners, #banners .bricklayer-column {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#banners #player-banners, #banners #staff-banners {
+  width: 85%;
+}
+
+#banners #player-banners img, #banners #staff-banners img {
+  width: 99.5%;
+  background-color: #1a202c;
+  border: 4px #00060c solid;
+  opacity: 0%;
+}
+
+#banners .bricklayer-column-sizer {
+  width: 25%;
+}
+/*# sourceMappingURL=main.css.map */

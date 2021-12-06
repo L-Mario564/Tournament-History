@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/Sx0uEFF.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/api.js" defer></script>
+    <script src="scripts/page-transitions.js" defer></script>
+    <script src="scripts/setup.js" defer></script>
+    <script src="scripts/overlay.js" defer></script>
+    <title>Mario's Tournament History</title>
+</head>
+<body>
+    <div id="loading-screen">
+        <div id="loading-text">Loading...</div>
+    </div>
+    <div id="nav-bar">
+        <div class="option selected" id="option-1">
+            <button class="nav-bar-btn" onclick="changePage(event);">Player History</button>
+        </div>
+        <div class="option" id="option-2">
+            <button class="nav-bar-btn" onclick="changePage(event);">Staff History</button>
+        </div>
+        <div class="option" id="option-3">
+            <button class="nav-bar-btn" onclick="changePage(event);">Banners</button>
+        </div>
+        <div id="show-more">
+            <button onclick="showMoreOptions();">+</button>
+        </div>
+        <div id="about">
+            <button onclick="displayAboutSection()">About</button>
+        </div>
+    </div>
+    <div id="responsive-nav-bar">
+        <div class="option" id="option-1">
+            <button class="nav-bar-btn" onclick="changePage(1);">Player History</button>
+        </div>
+        <div class="option" id="option-2">
+            <button class="nav-bar-btn" onclick="changePage(2);">Staff History</button>
+        </div>
+        <div class="option" id="option-3">
+            <button class="nav-bar-btn" onclick="changePage(3);">Banners</button>
+        </div>
+    </div>
+    <div id="content">
+        <div id="player-history" class="page shown">
+            <h1 class="animated-element">Player History</h1>
+            <p class="animated-element">All the tournaments I've played in, providing quite a lot of details.</p>
+            <button id="player-stats-btn" class="show-stats-btn" onclick="displayPlayerStats()">View Stats</button>
+            <div class="tournaments-container"></div>
+        </div>
+        <div id="staff-history" class="page hidden">
+            <h1 class="animated-element">Staff History</h1>
+            <p class="animated-element">All the tournaments I've staffed in, I'm mainly a spreadsheeter and a referee.</p>
+            <button id="staff-stats-btn" class="show-stats-btn" onclick="displayStaffStats()">View Stats</button>
+            <div class="tournaments-container"></div>
+        </div>
+        <div id="banners" class="page hidden">
+            <h1 class="animated-element">Banners</h1>
+            <p class="animated-element">A display of all my tournament banners, I like banners so I made a page dedicated to them.</p>
+            <h2>Player Banners</h2>
+            <div id="player-banners" class="bricklayer"></div>
+            <h2>Staff Banners</h2>
+            <div id="staff-banners" class="bricklayer"></div>
+        </div>
+        <div style="display: none;" id="about-section-content">
+            <h1>About This Website</h1>
+            <h2>Description</h2>
+            <p>You might be wondering about why I made an entire website dedicated to my tournament history in osu!, instead of making a simple Google Spreadsheet like most do.</p>
+            <p>Well, first, because I can, second, because I find that working on this website is a great way for me to practice my skills in web developing. Improvements are made to this website when I improve my coding skills.</p>
+            <h2>Note</h2>
+            <p>Most of the images used are for the sake of aesthetics but may not be created/owned by me (only edited them). Each image belongs to their respectice designer or owner.</p>
+        </div>
+    </div>
+</body>
+</html>

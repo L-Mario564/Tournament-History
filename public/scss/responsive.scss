@@ -1,0 +1,225 @@
+/* Smaller screens */
+@media screen and (max-width: 1250px) {
+    #player-history {
+        .tournament {
+            .info { grid-template-columns: 17.35% 15.15% 10.55% 21.75% 16.35% 18.85%; }
+
+            .match-history {
+                grid-column-start: 1;
+                grid-column-end: 7;
+            }
+        }
+    }
+
+    #staff-history {
+        .tournament {
+            .header {
+                grid-template-columns: 50% 50%;
+
+                .tournament-name {
+                    grid-row-start: auto;
+                    grid-row-end: auto;
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+
+                .date { padding-top: 0; }
+
+                .date, .host { padding-bottom: 1em; }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    #player-history {
+        .tournament {
+            .header {
+                grid-template-columns: 100%;
+
+                .placement {
+                    padding-top: 0;
+                    padding-bottom: 0.45em;
+                }
+            }
+
+            .team {
+                grid-template-columns: 100%;
+
+                .team-name { padding-bottom: 0.3em; }
+            }
+        }
+    }
+
+    #banners {
+        .bricklayer-column-sizer { width: 33.333%; }
+    }
+}
+
+@media screen and (max-width: 890px) {
+    #player-history {
+        .tournament {
+            .info { grid-template-columns: 21.54% 18.29% 14.74% 24.89% 20.54%; }
+
+            .seeding {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+
+            .match-history {
+                grid-column-start: 4;
+                grid-column-end: 7;
+            }
+
+            .team-size-8 { grid-template-columns: 16.666% 16.667% 16.667% 16.667% 16.667% 16.666%; }
+        }
+    }
+
+    #staff-history {
+        .tournament {
+            .role-count-7, .role-count-6, .role-count-5, .role-count-4, .role-count-3 { grid-template-columns: 50% 50%; }
+        }
+    }
+
+    #banners {
+        .bricklayer-column-sizer { width: 50%; }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    #overlay {
+        .overlay-container {
+            width: 100%;
+            margin: 0;
+            border: none;
+            min-height: 100%;
+        }
+
+        .exit-btn { display: inline-block; }
+    }
+
+    #player-history {
+        .tournament {
+            .info { grid-template-columns: 26.68% 23.42% 19.87% 30.03%; }
+
+            .participant-count {
+                grid-column-start: 1;
+                grid-column-end: 1;
+            }
+
+            .seeding {
+                grid-column-start: 2;
+                grid-column-end: 3;
+            }
+
+            .match-history {
+                grid-column-start: 3;
+                grid-column-end: 5;
+            }
+
+            .team-size-8, .team-size-7 { grid-template-columns: 20% 20% 20% 20% 20%; }
+        }
+    }
+
+    #banners {
+        .bricklayer-column-sizer { width: 100%; }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #nav-bar {
+        grid-template-columns: 11em 10em auto auto;
+
+        #option-3 { display: none; }
+        #show-more { display: block; }
+    }
+
+    #player-history {
+        .tournament {
+            .team-size-8, .team-size-7, .team-size-6 { grid-template-columns: 25% 25% 25% 25%; }
+        }
+    }
+
+    #staff-history {
+        .tournament {
+            .header {
+                grid-template-columns: 100%;
+
+                .tournament-name {
+                    grid-column-start: auto;
+                    grid-column-end: auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 590px) {
+    #player-history {
+        .tournament {
+            .info { grid-template-columns: 33.333% 33.334% 33.333%; }
+
+            .participant-count {
+                grid-column-start: auto;
+                grid-column-end: auto;
+            }
+
+            .seeding {
+                grid-column-start: auto;
+                grid-column-end: auto;
+            }
+
+            .match-history {
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #nav-bar {
+        grid-template-columns: 11em auto auto;
+
+        #option-2 { display: none; }
+        #show-more { display: block; }
+    }
+
+    #player-history {
+        .tournament {
+            .team-size-8, .team-size-7, .team-size-6, .team-size-5 { grid-template-columns: 33.333% 33.334% 33.333%; }
+        }
+    }
+}
+
+/* Larger screens */
+@media screen and (min-width: 1766px) {
+    #banners {
+        .bricklayer-column-sizer { width: 20%; }
+    }
+}
+
+@media screen and (min-width: 2650px) {
+    #banners {
+        .bricklayer-column-sizer { width: 16.666%; }
+    }
+}
+
+@media screen and (min-width: 3975px) {
+    #player-history, #staff-history {
+        .tournaments-container {
+            grid-template-columns: 50% 50%;
+            grid-gap: 4em;
+        }
+    }
+
+    #banners {
+        .bricklayer-column-sizer { width: 14.285%; }
+    }
+}
+
+@media screen and (min-width: 5300px) {
+    #banners {
+        .bricklayer-column-sizer { width: 12.5%; }
+    }
+}
